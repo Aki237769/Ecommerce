@@ -1,0 +1,462 @@
+.card {
+    background-color:black;
+    border-radius: 15px; /* Add border-radius to cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 15px; /* Ensure the image matches the card's border-radius */
+    border-top-right-radius: 15px; /* Ensure the image matches the card's border-radius */
+    border-radius: 50px;
+}
+
+.card h2 {
+    font-size: 1.5em;
+    margin: 15px 0;
+    padding: 0 15px;
+    color: #333;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+/* select vehichle */
+
+
+.vehicle-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.vehicle {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.vehicle-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    min-width: 150px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+.form-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.form-actions .reset {
+    background-color: #dc3545;
+    color: white;
+}
+
+.form-actions .reset:hover {
+    background-color: #c82333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions .search {
+    background-color: #007bff;
+    color: white;
+}
+
+.form-actions .search:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#col-1{
+    width: 100%;
+    display: flex;
+    
+}
+
+#col-2{
+    margin-top: 25px;
+    
+}
+
+#img{
+    background-color:#2E2532;
+    height: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+/* car exterior */
+
+.container{
+    display: flex;
+    width: 100%;
+    margin-left:-100px ;
+    
+    /* background-color: black; */
+}
+
+.image-section img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+
+    
+}
+
+.image-section {
+    flex: 1;
+    
+}
+
+.content-section {
+    flex: 1.5;
+    padding: 20px;
+}
+
+.content-section h2 {
+    margin-top: 5px;
+    color: #333;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* color:#ffffff */
+    font-style: bold;
+}
+
+.content-section p {
+    color: #666;
+    line-height: 1.6;
+    margin-top: 40px;
+    font-size: x-large;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* ----footmats---- */
+
+.container-1 {
+    display: flex;
+    width: 90%;
+    /* max-width: 1200px; */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 200px;
+    /* border: 2px solid red; */
+    
+}
+
+    
+.content-section-1 p{
+    margin-right: 70px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: x-large;
+    color:#666;
+    width: 80%;
+    /* border: 2px solid red; */
+    margin-top: 70px;
+    
+}
+.content-section-1 h2{
+    margin-right: 200px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #333;
+    /* border: 2px solid red; */
+    margin-top: 15px;
+
+
+}
+.image-section-1{
+    margin-right:100px;
+    /* border: 2px solid red; */
+}
+
+.content-section-1{
+    width: 100%;
+    /* border: 2px solid red; */
+    margin-top: 20px;
+ }
+/* --------carcarestyling------- */ 
+.container-2{
+    display: flex;
+    width: 90%;
+    margin-left:65px ;
+    
+    
+}
+
+.image-section-2 img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    margin-left: 50px;
+    border:2px solid red;
+
+    
+}
+
+.image-section-2 {
+    flex: 1;
+    
+}
+
+.content-section-2 {
+    flex: 1.5;
+    padding: 20px;
+}
+
+.content-section-2 h2 {
+    margin-top: 5px;
+    color: #333;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* color:#ffffff */
+    font-style: bold;
+}
+
+.content-section-2 p {
+    color: #666;
+    line-height: 1.6;
+    margin-top: 40px;
+    font-size: x-large;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+/* 
+-----BulkDiscount---- */
+
+.container-3 {
+    display: flex;
+    width: 90%;
+    /* max-width: 1200px; */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 200px;
+    /* border: 2px solid red; */
+    
+}
+
+    
+.content-section-3 p{
+    margin-right: 70px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: x-large;
+    color:#666;
+    width: 80%;
+    /* border: 2px solid red; */
+    margin-top: 50px;
+    
+    
+}
+.content-section-3 h2{
+    margin-right: 200px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #333;
+    /* border: 2px solid red; */
+    margin-top: 15px;
+
+
+}
+.image-section-3{
+    margin-right:100px;
+    /* border: 2px solid red; */
+}
+
+.content-section-3{
+    width: 100%;
+    /* border: 2px solid red; */
+    margin-top: 20px;
+ }
+/* --------------Bike Accessories----------- */
+
+
+.container-4{
+    display: flex;
+    width: 100%;
+    margin-left:-100px ;
+    
+    /* background-color: black; */
+}
+
+.image-section-4 img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border: 2px solid red;
+    margin-left: 200px;
+
+    
+}
+
+.image-section-4 {
+    flex: 1;
+    
+}
+
+.content-section-4 {
+    flex: 1.5;
+    padding: 20px;
+}
+
+.content-section-4 h2 {
+    margin-top: 5px;
+    color: #333;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* color:#ffffff */
+    font-style: bold;
+}
+
+.content-section-4 p {
+    color: #666;
+    line-height: 1.6;
+    margin-top: 40px;
+    font-size: x-large;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/* ----car brand--- */
+
+.carbrand{
+    width: 90%;
+    display:flex;
+    /* margin-left:470px; */
+    padding-left: 20px;
+    white-space: 100px;
+    margin-right: 40px;
+}
+.cardbrand-1{
+    margin-right: 500px;
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 2px solid red;
+}
+.img-thumbnail-1{
+    margin-left: 200px;
+}
+.img-thumbnail-2{
+
+    margin-left: 30px;
+
+}
+.img-thumbnail-3{
+    margin-left: 30px;
+}
+.img-thumbnail-4{
+    box-shadow: #2E2532;
+    margin-left: 30px;
+}
+.img-thumbnail-5{
+    
+    margin-left: 30px;
+}
+
+/* -----bike accessories---- */
+.acc{
+    margin-left: 250px;
+}
+
+.img-thumbnail-6{
+    margin-right: 50px;
+}
+
+.img-thumbnail-7{
+    margin-right: 20px;
+}
+
+.img-thumbnail-8{
+    margin-right: 20px;
+}
+
+.img-thumbnail-9{
+    margin-right: 20px;
+}
+
+/* ----bottom bar--- */
+
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #264653;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+.bottom-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+.bottom-bar a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+.social-icon {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+

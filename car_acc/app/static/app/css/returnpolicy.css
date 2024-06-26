@@ -1,0 +1,117 @@
+.container11{
+    color: aliceblue;
+    text-align: center;
+    width:700px;
+    margin-left:30%;
+    font-size: x-large;
+    font-family: 𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤;
+    
+}
+.header1 header h1{
+    
+        background: #333;
+        color: #fff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #777 3px solid;
+        text-align: center;
+        text-transform: uppercase;
+        margin-left:250px;
+        width:1100px;
+}
+
+.container p{
+    font-size:x-large;
+    font-family: 𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤;
+    text-align: center;
+    margin-top: 50px;
+    color:#fff;
+    text-wrap: wrap;
+    margin-left: 5%;
+    border:2px solid brown;
+}
+.terms h2 {
+    background:#807BE4;
+        color: #fff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #777 3px solid;
+        text-align: center;
+        text-transform: uppercase;
+        margin-left:250px;
+        width:1100px;
+}
+.par p{
+    font-size:x-large;
+    font-family: 𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤;
+    text-align: center;
+    margin-top: 50px;
+    color:#fff;
+    text-wrap: wrap;
+    margin-left: 5%;
+    border:2px solid brown;
+}
+
+.return h2{
+    background:#0066CC;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #777 3px solid;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left:5%;
+    width:1100px;
+}
+.para p{
+    font-size:x-large;
+    font-family: 𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤;
+    text-align: center;
+    margin-top: 50px;
+    color:#fff;
+    text-wrap: wrap;
+    margin-left: 5%;
+    border:2px solid brown;
+}
+.shipping h2{
+    background: #D63447;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #777 3px solid;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left:250px;
+    width:1100px;
+}
+.par2 p{
+    font-size:x-large;
+    font-family: 𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤;
+    text-align: center;
+    margin-top: 50px;
+    color:#fff;
+    text-wrap: wrap;
+    margin-left:5%;
+    border:2px solid brown;
+}
+.contact h2{
+    background: #C82586;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #777 3px solid;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left:250px;
+    width:1100px;
+}
+.hi p{
+    font-size:x-large;
+    font-family: 𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤;
+    text-align: center;
+    margin-top: 50px;
+    color:#fff;
+    text-wrap: wrap;
+    margin-left:5%;
+    border:2px solid brown;
+}
