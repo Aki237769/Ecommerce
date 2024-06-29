@@ -1,6 +1,7 @@
 from django.db import models
 from .import views
 
+
 class Admin_data(models.Model):
     admin_id=models.AutoField(primary_key=True, unique=True)
     admin_name=models.CharField(max_length=100)
@@ -26,7 +27,16 @@ class Customer_data(models.Model):
     def __str__(self) -> str:
         return f"customer_ID : {self.customer_id}, customer_Name : {self.customer_name}"
 
-
+class Product_data(models.Model):
+    product_id=models.AutoField(primary_key=True, unique=True)
+    product_category=models.CharField(max_length=20)
+    product_name= models.CharField(max_length=100)
+    product_description=models.CharField(max_length=200)
+    product_price=models.FloatField()
+    prdouct_image=models.ImageField(upload_to='productimage/',null=True,blank=True)
+    
+    def __str__(self) -> str:
+        return f"Product_ID : {self.product_id}, Product_name : {self.product_name}"
 
 
 

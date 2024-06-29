@@ -18,6 +18,26 @@
         <center><h2>𝔖𝔦𝔤𝔫𝔲𝔭 𝔭𝔞𝔤𝔢</h2></center>
         <form action="{% url 'signup' %}" method="POST">
             {% csrf_token %}
+            {% if error == 'seller exist' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Admin Exists</strong> You cannot be admin.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+                
+            {% if error == 'empty-fields' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Empty Fields</strong> You should check in on some of those fields below.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+                
+            {% if success == 'done' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Congratulations</strong> Signup is successfull.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="name" id="name" class="form-control"  name="name"required>

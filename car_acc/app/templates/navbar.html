@@ -54,9 +54,9 @@
             {% if request.session.customer_id or request.session.admin_id %}
             <div class = "ms-2 bg-primary p-2 rounded">
                 {% if request.session.customer_id %}
-                <b class="text-white">{{request.session.customer_name}}</b>
+                <a class="text-white"  href="{% url 'customer' %}">{{request.session.customer_name}}</a>
                 {% elif request.session.admin_id %}
-                <b class="text-white">{{request.session.admin_name}}</b>
+                <a class="text-white" href="{% url 'admin_dashboard' %}">{{request.session.admin_name}}</a>
                 {% endif %}
                 
               <a class="btn btn-success ms-2" href="{% url 'logout' %}">Logout</a>

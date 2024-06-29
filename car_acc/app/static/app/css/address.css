@@ -1,0 +1,78 @@
+.container-address {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #343a40;
+}
+
+.address-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transition: box-shadow 0.3s ease;
+}
+
+.address-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.address-details {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.address-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-edit {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-select {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-select:hover {
+    background-color: #0069d9;
+    transform: scale(1.05);
+}
