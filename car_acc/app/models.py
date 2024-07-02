@@ -33,10 +33,30 @@ class Product_data(models.Model):
     product_name= models.CharField(max_length=100)
     product_description=models.CharField(max_length=200)
     product_price=models.FloatField()
-    prdouct_image=models.ImageField(upload_to='productimage/',null=True,blank=True)
+    product_image=models.ImageField(upload_to='productimage/',null=True,blank=True)
     
     def __str__(self) -> str:
         return f"Product_ID : {self.product_id}, Product_name : {self.product_name}"
+
+class Cart(models.Model):
+    customer=models.ForeignKey(Customer_data,related_name='customer', on_delete=models.CASCADE)
+    product=models.ForeignKey(Product_data,related_name='product', on_delete=models.CASCADE)
+    quantity=models.PositiveIntegerField(default=1)
+
+    def __str__(self) -> str:
+        return f"product : {self.product.product_name}, quantity : {self.quantity}"
+    
+
+class Order(models.Model):
+    customer=models.ForeignKey(Customer_data, on_delete=models.CASCADE)
+    product=models.ForeignKey(Product_data, on_delete=models.CASCADE)
+    quantity=models.PositiveIntegerField(default=1)
+    order_date=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"order_by: {self.customer.customer_name}, product : {self.product.product_name}"
+
+    
 
 
 

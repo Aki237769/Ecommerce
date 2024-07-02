@@ -37,106 +37,47 @@
                 Car BodyCover
             </div>
         </div>
-
+        {% for product in exterior_product|slice:"0:3" %}
         <div class="card-product1">
-            <img src="{% static 'app/images/product/body cover Altok10.jpg' %}"alt="Product 1">
+            <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
-            <h3 class="card-title-1">Alto K10 Body Cover.Blue</h3>
+            <h3 class="card-title-1">{{product.product_name}}</h3>
+        
             <div class="quantity-selector">
                 <button id="decrease-btn">-</button>
                 <span id="quantity-display"class="quantity-display">1</span>
                 <button id="increase-btn">+</button>
             </div>
-            <div class="price"> Rs.500</div>
+            <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
                     <button>Buy Now</button>
                     <button>Add to Cart</button>
                 </div>
             </div>
+        
         </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/body cover creta.jpg' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Creta Body Cover.white</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.900</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/body cover nexon.jpg' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Nexon Body Cover.Brown</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-             <div class="price"> Rs.700</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+    
     <div id="ground2" style="background-image: url('{% static 'app/images/banner/wall1.jpg' %}');">
+        {% for product in exterior_product|slice:"3:6" %}
         <div class="card-product1">
-            <img src="{% static 'app/images/product/door guard nexon.webp' %}"alt="Product 1">
+            <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
-            <h3 class="card-title-1">Nexon Door Guard.Black</h3>
+            <h3 class="card-title-1">{{product.product_name}}</h3>
             <div class="quantity-selector">
                 <button id="decrease-btn">-</button>
                 <span id="quantity-display"class="quantity-display">1</span>
                 <button id="increase-btn">+</button>
             </div>
-            <div class="price"> Rs.350</div>
+            <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
                     <button>Buy Now</button>
                     <button>Add to Cart</button>
                 </div>
             </div>
         </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/Door guard creata.webp' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Creta Door Guard.Black</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.300</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/door gurad alto k10.jpg' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">AltoK10 Door Guard.White</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.200</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
+        {% endfor %}
         <div id="carinterior2" style="background-image: url('{% static 'app/images/banner/doorguardhd1.webp' %}');">
             <div id="carname1">
                 Car DoorGuard
@@ -149,57 +90,30 @@
                 Car WheelCover
             </div>
         </div>
-
+    
+        
+        {% for product in exterior_product|slice:"6:9" %}
         <div class="card-product1">
-            <img src="{% static 'app/images/product/Creta wheel cover.avif' %}"alt="Product 1">
+            <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
-            <h3 class="card-title-1">Creta wheel cover.Black</h3>
+            <h3 class="card-title-1">{{product.product_name}}</h3>
             <div class="quantity-selector">
                 <button id="decrease-btn">-</button>
                 <span id="quantity-display"class="quantity-display">1</span>
                 <button id="increase-btn">+</button>
             </div>
-            <div class="price"> Rs.1600</div>
+            <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
                     <button>Buy Now</button>
                     <button>Add to Cart</button>
                 </div>
             </div>
         </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/wheel cover alto k10.avif' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Alto k10 Wheel Cover.Sliver</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.900</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/wheel cover tata nexon.jpg' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Nexon Wheel Cover.Sliver</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.1500</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
-    {% include 'footer.html' %}
+        
+        
+        {% include 'footer.html' %}
     
 
     

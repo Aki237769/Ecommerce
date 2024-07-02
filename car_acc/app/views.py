@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect, HttpResponse
+from django.shortcuts import render,redirect, HttpResponse,get_object_or_404
 from django.contrib.auth.hashers import make_password,check_password
 from django.db import IntegrityError
 
@@ -15,16 +15,33 @@ def about(request):
     return render(request, "about.html")
 
 def carinterior(request):
-    return render(request, "carinterior.html")
+    car_int_product= models.Product_data.objects.filter(product_category='car_interior' )
+    data={
+        "interior_product":car_int_product
+
+    }
+    return render(request, "carinterior.html", context=data)
 
 def carexterior(request):
-    return render(request, "carexterior.html")
+    car_ext_product=models.Product_data.objects.filter(product_category='car_exterior')
+    data={
+        "exterior_product":car_ext_product
+    }
+    return render(request, "carexterior.html", context=data)
 
 def carcare(request):
-    return render(request, "carcare.html")
+    car_care_product=models.Product_data.objects.filter(product_category='car_care')
+    data={
+        "care_product":car_care_product
+    }
+    return render(request, "carcare.html", context=data)
 
 def carstyling(request):
-    return render(request, "carstyling.html")
+    car_style_product=models.Product_data.objects.filter(product_category='car_styling')
+    data={
+        "styling_product":car_style_product
+    }
+    return render(request, "carstyling.html", context=data)
 
 def bulkdiscount(request):
     return render(request, "bulkdiscount.html")
@@ -84,13 +101,40 @@ def customerpage(request):
         'customer_data':customer_data
     }
     return render(request, "customer/customer.html", context=data)
+
 def buynow(request):
-    return render(request, "carcare.html")
+    if not(request.session.get('customer_id')):
+        return redirect('login')
+    product = get_object_or_404(models.Product_data, product_id=request.session.get("product_id"))
+    if request.method == 'POST':
+        quantity = int(request.POST.get('quantity', 1))
+        order=models.Order.objects.create(customer=request.session.get("customer_id"), product=product, quantity=quantity)
+        
+        return redirect('order_confirmation', order_id=order.id)
+    return render(request, 'orderhistory.html',{'product':product})
+    
+
 def orderhistory(request):
+    
     return render(request, "customer/orderhistory.html")
 
-def cart(request):
+def add_to_cart(request):
+    if not(request.session.get('customer_id')):
+        return redirect('login')
+    if request.method=="POST":
+        customer_id=models.Customer_data.objects.get(customer=request.session.get('customer_id'))
+        product_key=request.POST.get('product_id')
+        product_name=get_object_or_404(models.Product_data,product_id=product_key)
+        product_quantity=request.POST.get('product_quantity')
+        models.Cart.objects.create(customer=customer_id,product=product_name,quantity=product_quantity)
+        return redirect('cart')
+    
+
+      
+          
+      
     return render(request, "customer/cart.html")
+
 
 def signup(request):
     if request.POST:

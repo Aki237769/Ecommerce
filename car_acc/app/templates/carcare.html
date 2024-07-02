@@ -36,167 +36,79 @@
                 Car Ceramic
             </div>
         </div>
-
+        {% for product in care_product|slice:"0:3" %}
         <div class="card-product1">
-            <img src="{% static 'app/images/product/car care1.webp' %}"alt="Product 1">
+            <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
-            <h3 class="card-title-1">Car Tyre Dresser</h3>
+            <h3 class="card-title-1">{{product.product_name}}</h3>
             <div class="quantity-selector">
                 <button id="decrease-btn">-</button>
                 <span id="quantity-display"class="quantity-display">1</span>
                 <button id="increase-btn">+</button>
             </div>
-            <div class="price"> Rs.400</div>
+            <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
                     <button>Buy Now</button>
                     <button>Add to Cart</button>
                 </div>
             </div>
         </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/carcare2.webp' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Car Ceramic Coating</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.900</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/carcare3.webp' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Car Care Microfibre Cloth(2)</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-             <div class="price"> Rs.250</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
+    
+    
     <div id="ground2" style="background-image: url('{% static 'app/images/banner/wall1.jpg' %}');">
+        {% for product in care_product|slice:"3:6" %}
         <div class="card-product1">
-            <img src="{% static 'app/images/product/carcare6.webp' %}"alt="Product 1">
+            <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
-            <h3 class="card-title-1">Wavax xTreme Gloss</h3>
+            <h3 class="card-title-1">{{product.product_name}}</h3>
             <div class="quantity-selector">
                 <button id="decrease-btn">-</button>
                 <span id="quantity-display"class="quantity-display">1</span>
                 <button id="increase-btn">+</button>
             </div>
-            <div class="price"> Rs.350</div>
+            <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
                     <button>Buy Now</button>
                     <button>Add to Cart</button>
                 </div>
             </div>
         </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/carcare7.webp' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Wavax Car Perfume</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.600</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/carcare4.webp' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Wavax Residue Remover</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.400</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
+        {% endfor %}
+        
+        
         <div id="carinterior2" style="background-image: url('{% static 'app/images/banner/carcareimg2.webp' %}');">
             <div id="carname1">
             Car Gloss
             </div>
         </div>
     </div>
+    
     <div id="ground" style="background-image: url('{% static 'app/images/banner/wall1.jpg' %}');">
         <div id="carinterior3" style="background-image: url('{% static 'app/images/banner/carcareimg1.webp' %}');">
             <div id="carname1" style="background-color: orange; color: aliceblue;">
                 Car Shampoo
             </div>
         </div>
-
+        {% for product in care_product|slice:"6:9" %}
         <div class="card-product1">
-            <img src="{% static 'app/images/product/Carshampoo1.webp' %}"alt="Product 1">
+            <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
-            <h3 class="card-title-1">Car Shampoo Gloss</h3>
+            <h3 class="card-title-1">{{product.product_name}}</h3>
             <div class="quantity-selector">
                 <button id="decrease-btn">-</button>
                 <span id="quantity-display"class="quantity-display">1</span>
                 <button id="increase-btn">+</button>
             </div>
-            <div class="price"> Rs.230</div>
+            <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
                     <button>Buy Now</button>
                     <button>Add to Cart</button>
                 </div>
             </div>
         </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/carshampoo2.webp' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Car Shampoo+Wax</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.250</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-product1">
-            <img src="{% static 'app/images/product/carshampoo3.webp' %}"alt="Product 1">
-            <div class="card-content-1">
-            <h3 class="card-title-1">Car Shampoo+High Gloss</h3>
-            <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
-            </div>
-            <div class="price"> Rs.450</div>
-                <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
     {% include 'footer.html' %}
     
