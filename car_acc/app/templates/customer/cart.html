@@ -12,24 +12,43 @@
 <body>
 
   {% include 'navbar.html' %}
-    <div class="container-customer">
-		<header>
-			<nav>
-				<ul>
-					<li><a href="{% url 'customer' %}" class="btn">My Profile</a></li>
-					<li><a href="{%  url 'order' %}" class="btn">Order</a></li>
-					<li><a href="{% url 'cart' %}" class="btn">Cart <span class="cart-count">3</span></a></li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-
-			<h1>Welcome {{customer_data.customer_name}}</h1>
-			<p>This is your customer page where you can view your orders, update your profile, and more.</p>
-		</main>
-	</div>
-
-    {% include 'footer.html' %}
+    <div class="cart_customer">
+        <div class="container_cart">
+                    <h1>Your Shopping Cart</h1>
+                    <div class="cart-items">
+                        <!-- Cart Item -->
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/100" alt="Product Image">
+                            </div>
+                            <div class="item-details">
+                                <h2>Product Name 1</h2>
+                                <p>Product description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p class="price">Price: $100.00</p>
+                            </div>
+                            <div class="item-quantity">
+                                <label for="quantity1">Quantity:</label>
+                                <select id="quantity1" name="quantity1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="item-actions">
+                                <button class="btn remove-btn">Remove</button>
+                            </div>
+                        </div>
+                        <!-- Repeat Cart Item as needed -->
+                    </div>
+                    <div class="cart-total">
+                        <p>Total: $100.00</p>
+                    </div>
+                    
+                    <button class="btn checkout-btn"><a href="{% url 'checkout' %}">Proceed to Checkout</button></a>
+                </div>
+    </div>
+{% include 'footer.html' %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

@@ -261,29 +261,20 @@ header h1 {
     align-items: center;
     /* gap: 10px; */
     background-color: white;
-    width: 78px;
-    margin-left: 80px;
+    width: 30%;
+    margin-left:50px;
     /* margin-bottom: 20px; */
     margin-top: 20px;
+
 }
 
-.quantity-selector button {
-    padding: 5px 10px;
-    font-size: 10px;
-    /* border: 2px solid blue; */
-    height:25px;
-    
-}
-
-.quantity-display {
-    font-size: 15px;
-    min-width: 20px;
+.quantity-selector input {
+    width:100px;
     text-align: center;
-    background-color: whitesmoke;
-    /* height:20px; */
-    /* border:2px solid red; */
-    
+
 }
+
+
 
 .price{
     color: black;

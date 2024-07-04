@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect, HttpResponse,get_object_or_404
 from django.contrib.auth.hashers import make_password,check_password
 from django.db import IntegrityError
-
+from django.views.decorators.http import require_POST
 from . import models 
 
 # Create your views here.
@@ -102,38 +102,54 @@ def customerpage(request):
     }
     return render(request, "customer/customer.html", context=data)
 
-def buynow(request):
+def orderconfirmation(request):
+    return render(request, 'customer/orderconfirmation.html')
+
+def address(request):
+
+    return render(request, 'customer/address.html')
+def update_address(request):
+    return render(request, 'customer/updateaddress.html')
+
+
+def handle_product_action(request, product_id):
     if not(request.session.get('customer_id')):
         return redirect('login')
-    product = get_object_or_404(models.Product_data, product_id=request.session.get("product_id"))
     if request.method == 'POST':
+        customer = models.Customer_data.objects.get(customer_id=request.session['customer_id'])
+        product = get_object_or_404 (models.Product_data, product_id=product_id)
         quantity = int(request.POST.get('quantity', 1))
-        order=models.Order.objects.create(customer=request.session.get("customer_id"), product=product, quantity=quantity)
-        
-        return redirect('order_confirmation', order_id=order.id)
-    return render(request, 'orderhistory.html',{'product':product})
+        action = request.POST.get('action')
+
+        if action == 'add_to_cart':
+            cart_item, created = models.Cart.objects.get_or_create(customer=customer, product=product)
+            if not created:
+                cart_item.quantity += quantity
+            else:
+                cart_item.quantity = quantity
+            cart_item.save()
+            return redirect('cart')  # Redirect to the cart page
+
+        elif action == 'buy_now':
+            models.Order.objects.filter(customer=customer).delete()  # Clear existing cart items
+            models.Order.objects.create(customer=customer, product=product, quantity=quantity)
+            return redirect('address')  # Redirect to the checkout page
+
+    return redirect('cart')  # Redirect to the homepage or any other appropriate page
+
+def checkout(request):
+    return render(request,'customer/checkout.html')
+
+def cart(request):
+    return render(request, 'customer/cart.html')
+
     
 
 def orderhistory(request):
     
     return render(request, "customer/orderhistory.html")
 
-def add_to_cart(request):
-    if not(request.session.get('customer_id')):
-        return redirect('login')
-    if request.method=="POST":
-        customer_id=models.Customer_data.objects.get(customer=request.session.get('customer_id'))
-        product_key=request.POST.get('product_id')
-        product_name=get_object_or_404(models.Product_data,product_id=product_key)
-        product_quantity=request.POST.get('product_quantity')
-        models.Cart.objects.create(customer=customer_id,product=product_name,quantity=product_quantity)
-        return redirect('cart')
-    
 
-      
-          
-      
-    return render(request, "customer/cart.html")
 
 
 def signup(request):
@@ -217,7 +233,7 @@ def login(request):
             user="admin"
 
 
-        if all([[email,password,user]]):
+        if all([email,password,user]):
             if user=="customer":
                 check_email = models.Customer_data.objects.filter(customer_email=email).exists()
                 if check_email:

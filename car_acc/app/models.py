@@ -23,6 +23,7 @@ class Customer_data(models.Model):
     customer_gender=models.CharField(max_length=10)
     customer_role=models.CharField(max_length=20)
     customer_phone=models.CharField(max_length=10)
+    customer_address=models.TextField(null=True)
 
     def __str__(self) -> str:
         return f"customer_ID : {self.customer_id}, customer_Name : {self.customer_name}"

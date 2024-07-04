@@ -3,7 +3,6 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path('',views.home, name='home'),
     path('about/',views.about, name='about'),
@@ -20,8 +19,14 @@ urlpatterns = [
     path('admin_dashboard/', views.admin , name='admin_dashboard'),
     path('customer_page/', views.customerpage , name='customer'),
     path('orderhistory/', views.orderhistory , name='order'),
-    path('cart/', views.add_to_cart , name='cart'),
+    path('product/<int:product_id>/action/', views.handle_product_action , name='handle_product_action'),
     path('add_product/', views.product_add , name='add_product'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('cart/', views.cart, name='cart'),
+    path('address/', views.address, name='address'),
+    path('orderconfirmation/', views.orderconfirmation, name='orderconfirmation'),
+    path('updateaddress/', views.update_address, name='update_address')
+
 ]
 
 if settings.DEBUG:
