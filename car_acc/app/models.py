@@ -46,16 +46,18 @@ class Cart(models.Model):
 
     def __str__(self) -> str:
         return f"product : {self.product.product_name}, quantity : {self.quantity}"
-    
+
 
 class Order(models.Model):
     customer=models.ForeignKey(Customer_data, on_delete=models.CASCADE)
     product=models.ForeignKey(Product_data, on_delete=models.CASCADE)
     quantity=models.PositiveIntegerField(default=1)
+    total_price=models.FloatField(null=True)
     order_date=models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"order_by: {self.customer.customer_name}, product : {self.product.product_name}"
+    
 
     
 

@@ -13,9 +13,10 @@
 
   {% include 'navbar.html' %}
     <div class="container_checkout">
+        <form method="POST" action="{% url 'checkout' %}">
             <div class="container_payment">
             <h1>Choose Your Payment Method</h1>
-            <form>
+                {% csrf_token %}
                 <div class="payment-option">
                     <input type="radio" id="netbanking" name="payment" value="netbanking">
                     <label for="netbanking">Net Banking/UPI Payment/Online Payment</label>
@@ -24,9 +25,10 @@
                     <input type="radio" id="cod" name="payment" value="cod">
                     <label for="cod">Cash on Delivery</label>
                 </div>
-                <button type="button" class="btn place-order-btn"><a href="{% url 'orderconfirmation' %  }"></a>Place Order</button>
-            </form>
+                <button type="button" class="btn" id="place-order-btn"><a href="{% url 'address' %}" style="text-decoration: none; color: whitesmoke;">Back</a></button>
+                <button type="submit" class="btn" id="place-order-btn">Place Order</button>
             </div>
+        </form>
     </div>
 
     {% include 'footer.html' %}

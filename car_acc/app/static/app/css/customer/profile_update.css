@@ -1,0 +1,59 @@
+/* Update Profile Form Styles */
+
+.update-profile-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .update-profile-container h2 {
+    margin-top: 0;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="password"] {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-group textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-update-profile {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-update-profile:hover {
+    background-color: #3e8e41;
+  }

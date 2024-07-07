@@ -7,6 +7,8 @@
         width: 90%;
         max-width: 800px;
         text-align: center;
+        margin-left: 25%;
+        border:2px solid red;
     }
     
     h1 {
@@ -30,7 +32,7 @@
     
     .order-summary h2, .shipping-address h2 {
         color: #007bff;
-        margin-bottom: 15px;
+        margin-bottom: 50px;
     }
     
     .order-item {
@@ -83,13 +85,13 @@
     
     .continue-shopping-btn {
         background-color: #007bff;
-        color: white;
+        color:rebeccapurple;
     }
     
     .continue-shopping-btn:hover {
         background-color: #0056b3;
     }
-}
+
 
 
 .container_order {
@@ -174,11 +176,12 @@ h1 {
     font-size: 1.1em;
 }
 
-.continue-shopping-btn {
-    background-color: #007bff;
-    color: white;
+#continue-shopping-btn {
+    background-color: #131842;
+    color:whitesmoke;
+    margin-top: 2.5%;
 }
 
-.continue-shopping-btn:hover {
-    background-color: #0056b3;
+#continue-shopping-btn:hover {
+    background-color: #00b365;
 }

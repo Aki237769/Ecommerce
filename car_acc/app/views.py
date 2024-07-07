@@ -6,13 +6,6 @@ from . import models
 
 # Create your views here.
 
-def home(request):
-    return render(request,"home.html")
-
-# def navbar(request):
-#     return render(request, "app/navbar.html")
-def about(request):
-    return render(request, "about.html")
 
 def carinterior(request):
     car_int_product= models.Product_data.objects.filter(product_category='car_interior' )
@@ -51,8 +44,28 @@ def returnpolicy(request):
 
 def contactus(request):
     return render(request, "contactus.html")
-def product_add(request):
 
+def home(request):
+    return render(request,"home.html")
+
+def about(request):
+    return render(request, "about.html")
+
+
+
+
+
+def admin(request):
+    if not(request.session.get('admin_id')):
+        return redirect("login")
+    admin_data=models.Admin_data.objects.get(admin_id=request.session.get('admin_id'))
+    data={
+        'admin_data':admin_data
+    }
+    return render(request, "admin/admin.html",context=data)
+
+
+def product_add(request):
     if request.method == 'POST':
         product_category = request.POST['product_category']
         product_name = request.POST['product_name']
@@ -84,14 +97,6 @@ def product_add(request):
 
 
 
-def admin(request):
-    if not(request.session.get('admin_id')):
-        return redirect("login")
-    admin_data=models.Admin_data.objects.get(admin_id=request.session.get('admin_id'))
-    data={
-        'admin_data':admin_data
-    }
-    return render(request, "admin/admin.html",context=data)
 
 def customerpage(request):
     if not(request.session.get('customer_id')):
@@ -102,14 +107,48 @@ def customerpage(request):
     }
     return render(request, "customer/customer.html", context=data)
 
-def orderconfirmation(request):
-    return render(request, 'customer/orderconfirmation.html')
-
-def address(request):
-
-    return render(request, 'customer/address.html')
-def update_address(request):
-    return render(request, 'customer/updateaddress.html')
+def update_profile(request):
+    if not(request.session.get('customer_id')):
+        return redirect('login')
+    if request.method=="POST":
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        phone=request.POST.get('phone')
+        address=request.POST.get('address') 
+        if all([name,email,phone,address]):
+            try:
+                customer=models.Customer_data.objects.get(customer_id=request.session.get('customer_id'))
+                customer.customer_name=name
+                customer.customer_email=email
+                customer.customer_phone=phone
+                customer.customer_address=address
+                customer.save()
+                data={
+                    "customer_data":customer,
+                    "success":"done"
+                }
+                return render(request, 'customer/customer.html',context=data)
+            except IntegrityError as e:
+                if'customer_phone'in str(e):
+                    error={
+                        'error':'phone-error'
+                    }
+                else:
+                    error={
+                        'error':'email-error'
+                    }
+        else:
+            error={
+                'error':'empty-fields'
+            }
+        return render(request, 'customer/profile_update.html', context=error)
+               
+    customer_data=models.Customer_data.objects.get(customer_id=request.session.get('customer_id'))
+    data={
+        'customer_data':customer_data
+    }
+    return render(request,"customer/profile_update.html", context=data)
+    
 
 
 def handle_product_action(request, product_id):
@@ -124,30 +163,162 @@ def handle_product_action(request, product_id):
         if action == 'add_to_cart':
             cart_item, created = models.Cart.objects.get_or_create(customer=customer, product=product)
             if not created:
-                cart_item.quantity += quantity
+                if cart_item.quantity<5:
+                    cart_item.quantity += quantity
+                else:
+                    cart_item.quantity=5
             else:
-                cart_item.quantity = quantity
+                if cart_item.quantity<5:
+                    cart_item.quantity = quantity
+                else:
+                    cart_item.quantity=5
             cart_item.save()
             return redirect('cart')  # Redirect to the cart page
 
         elif action == 'buy_now':
-            models.Order.objects.filter(customer=customer).delete()  # Clear existing cart items
-            models.Order.objects.create(customer=customer, product=product, quantity=quantity)
+            cart_item, created = models.Cart.objects.get_or_create(customer=customer, product=product)
+            if not created:
+                if cart_item.quantity<5:
+                    cart_item.quantity += quantity
+                else:
+                    cart_item.quantity=5
+            else:
+                if cart_item.quantity<5:
+                    cart_item.quantity = quantity
+                else:
+                    cart_item.quantity=5
+            cart_item.save()  # Clear existing cart items
+            request.session['single_product'] = True
+            request.session['single_product_id'] = product_id
             return redirect('address')  # Redirect to the checkout page
 
     return redirect('cart')  # Redirect to the homepage or any other appropriate page
 
-def checkout(request):
-    return render(request,'customer/checkout.html')
+
 
 def cart(request):
-    return render(request, 'customer/cart.html')
+    if not(request.session.get("customer_id")):
+        return redirect("login")
+    if request.method == 'POST':
+        customer = models.Customer_data.objects.get(customer_id=request.session['customer_id'])
+        product_ids = request.POST.getlist('product_id')
+        for product_id in product_ids:
+            quantity_key = f'quantity_{product_id}'
+            quantity = int(request.POST.get(quantity_key))
+            product = models.Product_data.objects.get(product_id=product_id)
+            
+            # Update the cart item with the new quantity
+            cart_item, created = models.Cart.objects.get_or_create(customer=customer, product=product)
+            cart_item.quantity = int(quantity)  # Ensure quantity is saved as an integer
+            cart_item.save()
+        data = {
+            'customer_data': customer
+        }
+        return render(request,'customer/address.html',context=data)
+    product=models.Cart.objects.filter(customer=request.session.get('customer_id'))
+    total_price = round(sum(item.product.product_price * item.quantity for item in product))
+    quantity_range = range(1,6)
+    data={
+        "product_data": product,
+        "total_price":total_price,
+        "quantity_range":quantity_range
 
+    }
+    return render(request, 'customer/cart.html',context=data)
+
+def remove_cart_item(request,product_id):
+    if not(request.session.get('customer_id')):
+        return redirect('login')
+    product_cart=models.Cart.objects.get(id=product_id)
+    product_cart.delete()
+    product=models.Cart.objects.filter(customer=request.session.get('customer_id'))
+    data={
+        "product_data": product
+    }
+    return render(request,'customer/cart.html', context=data)
     
+    
+
+
+def address(request):
+    if not (request.session.get('customer_id')):
+        return redirect('login')
+    customer = models.Customer_data.objects.get(customer_id=request.session.get('customer_id'))
+    data = {
+        'customer_data' : customer
+    }
+    return render(request, 'customer/address.html',context=data)
+
+
+def update_address(request):
+    if not (request.session.get('customer_id')):
+        return redirect('login')
+    if request.method=="POST":
+        address=request.POST.get('address')
+        try:
+            customer=models.Customer_data.objects.get(customer_id=request.session.get('customer_id'))
+            customer.customer_address=address
+            customer.save()
+            data={
+                "customer_data":customer,
+                "success":"done"
+            }
+            return render(request, 'customer/address.html',context=data)
+        except:
+            error = {
+                'error':'not-updated'
+            }
+            return render(request,"customer/update_address",context=error)
+    customer = models.Customer_data.objects.get(customer_id=request.session.get('customer_id'))
+    data = {
+        'customer_data' : customer
+    }
+    return render(request, 'customer/updateaddress.html',context=data)
+
+def checkout(request):
+    if not(request.session.get("customer_id")):
+        return redirect('login')
+    single_product = request.session.get('single_product', False)
+    product_id = request.session.get('single_product_id', None)
+    if single_product and product_id:
+        cart_items = models.Cart.objects.filter(customer=request.session.get('customer_id'), product_id=product_id)
+    else:
+        cart_items = models.Cart.objects.filter(customer=request.session.get('customer_id'))
+    if request.method=="POST":
+        total_price = round(sum(cart_items.product.product_price * cart_items.quantity for item in product)) 
+        payment_method=request.POST.get("payment")
+        print(payment_method)
+        if payment_method=="netbanking":
+            return render(request, 'customer/netbanking.html')
+        
+        elif payment_method=="cod" :
+            customer = models.Customer_data.objects.get(customer_id=request.session['customer_id'])
+            product = get_object_or_404 (models.Product_data, product_id=product_id)
+            quantity = int(request.POST.get('quantity', 1))
+            models.Order.objects.filter(customer=customer).delete()  # Clear existing cart items
+            models.Order.objects.create(customer=customer, product=product, quantity=quantity)
+
+            return render(request, 'customer/orderconfirmation.html')
+
+    return render(request,'customer/checkout.html')
+
+def orderconfirmation(request):
+    if not (request.session.get('customer_id')):
+        return redirect('login')
+    product = models.Order.objects.get(id = request.session.get('id'))
+    data = {
+        'product_data' : product
+    }
+    return render(request, 'customer/orderconfirmation.html',context=data)
+
 
 def orderhistory(request):
     
     return render(request, "customer/orderhistory.html")
+
+def netbanking(request):
+
+    return render(request, "customer/netbanking.html")
 
 
 
@@ -294,8 +465,6 @@ def logout(request):
             request.session.pop('admin_id')
             request.session.pop('admin_name')
             request.session.pop('admin_role')
-
-
         return redirect('login')
     
 

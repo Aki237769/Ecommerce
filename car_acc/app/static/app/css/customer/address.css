@@ -58,13 +58,13 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.update-btn {
-    background-color: #007bff;
+#update-btn {
+    background-color:#071952 ;
     color: white;
 }
 
-.update-btn:hover {
-    background-color: #0056b3;
+#update-btn:hover {
+    background-color: #059212;
 }
 
 .delete-btn {
@@ -86,11 +86,12 @@ h1 {
     background-color: #218838;
 }
 
-.next-btn {
+#next-btn {
     background-color: #17a2b8;
     color: white;
+    margin-left: 3%;
 }
 
-.next-btn:hover {
+#next-btn:hover {
     background-color: #117a8b;
 }

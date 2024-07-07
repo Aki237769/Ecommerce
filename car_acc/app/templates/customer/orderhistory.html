@@ -12,25 +12,68 @@
 <body>
 
   {% include 'navbar.html' %}
-    <div class="container-customer">
-		<header>
-			<nav>
-				<ul>
-					
-					<li><a href="{% url 'customer' %}" class="btn">My Profile</a></li>
-					<li><a href="{%  url 'order' %}" class="btn">Order</a></li>
-					<li><a href="{% url 'cart' %}" class="btn">Cart <span class="cart-count">3</span></a></li>
-					
-				</ul>
-			</nav>
-		</header>
-		<main>
-
-			<h1>Welcome {{customer_data.customer_name}}</h1>
-			<p>This is your customer order page where you can view your orders, update your profile, and more.</p>
-		</main>
-	</div>
-
+ <div class="order">  
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Account</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="order-summary">
+      <h2>Order History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img src="product1.jpg" alt="Product 1">
+              <h3>Product 1</h3>
+              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </td>
+            <td>2</td>
+            <td>$19.99</td>
+            <td>$39.98</td>
+          </tr>
+          <tr>
+            <td>
+              <img src="product2.jpg" alt="Product 2">
+              <h3>Product 2</h3>
+              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </td>
+            <td>1</td>
+            <td>$29.99</td>
+            <td>$29.99</td>
+          </tr>
+          <tr>
+            <td colspan="3">Total:</td>
+            <td>$69.97</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="order-details">
+      <h2>Order Details</h2>
+      <p>Order ID: #1234</p>
+      <p>Order Date: 2023-02-20</p>
+      <p>Shipping Address:</p>
+      <address>
+        123 Main St<br>
+        Anytown, USA 12345
+      </address>
+    </section>
+  </main>
+ </div>
     {% include 'footer.html' %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

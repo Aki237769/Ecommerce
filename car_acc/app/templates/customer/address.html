@@ -20,17 +20,17 @@
             <div class="address-list">
                 <div class="address-item">
                     <div class="address-details">
-                        <p>Address 1</p>
-                        <p>123 Street, City, Country</p>
+                        <p>{{customer_data.customer_address}}</p>
                     </div>
                     <div class="address-actions">
-                        <button class="btn update-btn"><a href="{% url 'update_address' %}">Update</a></button>
+                        <button class="btn" id="update-btn"><a href="{% url 'update_address' %} " style="text-decoration: none; color:whitesmoke">Update</a></button>
                     </div>
                 </div>
                 
                 <!-- Repeat above block for additional addresses, up to 4 total -->
             </div>
-            <a href="{% url 'checkout' %}" class="btn next-btn">Next</a>
+            <a href="{% url 'cart' %}" class="btn" id="next-btn" >Back</a>
+            <a href="{% url 'checkout' %}" class="btn" id="next-btn">Next</a>
         </div>
     </div>
 

@@ -42,19 +42,20 @@
             <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
             <h3 class="card-title-1">{{product.product_name}}</h3>
-        
+            <form method="post" action="{% url 'handle_product_action' product.product_id %}">
+                {% csrf_token %}
             <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="5" class="quantity-input">
+            
             </div>
             <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
+                    <button type="submit" name="action" value="add_to_cart">Buy Now</button>
+                    <button type="submit" name="action" value="buy_now">Add to Cart</button>
                 </div>
             </div>
-        
+        </form>
         </div>
         {% endfor %}
     </div>
@@ -65,17 +66,21 @@
             <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
             <h3 class="card-title-1">{{product.product_name}}</h3>
+
+            <form method="post" action="{% url 'handle_product_action' product.product_id %}">
+                {% csrf_token %}
             <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="5" class="quantity-input">
+                
             </div>
             <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
+                    <button type="submit" name="acton" value="buy_now">Buy Now</button>
+                    <button type="submit" name="action" value="add_to_cart">Add to Cart</button>
                 </div>
             </div>
+        </form>
         </div>
         {% endfor %}
         <div id="carinterior2" style="background-image: url('{% static 'app/images/banner/doorguardhd1.webp' %}');">
@@ -97,17 +102,20 @@
             <img src="{{product.product_image.url}}"alt="Product 1">
             <div class="card-content-1">
             <h3 class="card-title-1">{{product.product_name}}</h3>
+            <form method="post" action="{% url 'handle_product_action' product.product_id %}">
+                {% csrf_token %}
             <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
-                <span id="quantity-display"class="quantity-display">1</span>
-                <button id="increase-btn">+</button>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="5" class="quantity-input">
+                
             </div>
             <div class="price">{{product.product_price}}</div>
                 <div class="card-buttons">
-                    <button>Buy Now</button>
-                    <button>Add to Cart</button>
+                    <button type="submit" name="action" value="buy_now">Buy Now</button>
+                    <button type="submit" name="action" value="add_to_cart">Add to Cart</button>
                 </div>
             </div>
+        </form>
         </div>
         {% endfor %}
     </div>

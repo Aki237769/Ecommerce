@@ -25,7 +25,11 @@ urlpatterns = [
     path('cart/', views.cart, name='cart'),
     path('address/', views.address, name='address'),
     path('orderconfirmation/', views.orderconfirmation, name='orderconfirmation'),
-    path('updateaddress/', views.update_address, name='update_address')
+    path('updateaddress/', views.update_address, name='update_address'),
+    path('profile_update/', views.update_profile, name='update_profile'),
+    path('netbanking/', views.netbanking, name='netbanking'),
+    path('remove_cart/<int:product_id>/', views.remove_cart_item, name='remove_cart'),
+    
 
 ]
 

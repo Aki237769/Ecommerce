@@ -18,40 +18,30 @@
 <div class="order_confirmation">
 <div class="container_order">
     <h1>Thank You for Your Order!</h1>
-    <p class="order-number">Order Number: 123456789</p>
+    {% for product in product_data %}
+    <p class="order-number">Order Number: {{product.id}}</p>
     <div class="order-summary">
         <h2>Order Summary</h2>
         <div class="order-item">
             <div class="item-details">
                 <img src="https://via.placeholder.com/100" alt="Product Image">
                 <div class="item-info">
-                    <h3>Product Name 1</h3>
-                    <p>Quantity: 2</p>
-                    <p>Price: $200.00</p>
+                    <h3>{{product.product.product_name}}</h3>
+                    <p>Quantity: {{product.quantity}}</p>
+                    <p>Price: Rs. {{product.product.product_price}}</p>
                 </div>
             </div>
         </div>
-        <div class="order-item">
-            <div class="item-details">
-                <img src="https://via.placeholder.com/100" alt="Product Image">
-                <div class="item-info">
-                    <h3>Product Name 2</h3>
-                    <p>Quantity: 1</p>
-                    <p>Price: $150.00</p>
-                </div>
-            </div>
-        </div>
+        
         <div class="order-total">
-            <p>Total: $350.00</p>
+            <p>Total: </p>Rs. {{product.total_price}}
         </div>
     </div>
     <div class="shipping-address">
         <h2>Shipping Address</h2>
-        <p>John Doe</p>
-        <p>123 Main Street</p>
-        <p>City, State, ZIP Code</p>
-        <p>Country</p>
+        <p>{{product.customer.customer_address}}</p>
     </div>
+    {% endfor %}
 </div>
-    <button class="btn continue-shopping-btn">Continue Shopping</button>
+    <button class="btn" id="continue-shopping-btn">Continue Shopping</button>
 </div>
