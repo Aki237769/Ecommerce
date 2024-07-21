@@ -28,50 +28,43 @@
       <table>
         <thead>
           <tr>
+            <th>Order ID</th>
+            <th>Order Placed On</th>
             <th>Product</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Subtotal</th>
+            <th>Address</th>
+            <th>Delivered</th>
           </tr>
         </thead>
+        {% for product in products %}
         <tbody>
           <tr>
+            <td>{{product.order_id}}</td>
+            <td>{{product.order.order_date}}</td>
             <td>
-              <img src="product1.jpg" alt="Product 1">
-              <h3>Product 1</h3>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <img src="{{ product.product.product_image.url }}" alt="Product 1">
+              <h3>{{product.product.product_name}}</h3>
+            <td>{{product.quantity}}</td>
+            <td>Rs {{product.price}}</td>
+            <td>Rs {{product.total_price}}</td>
+            <td>{{product.order.address}}</td>
+            <td>
+              {% if product.is_delivered == 0 %}
+                No 
+              {% else %}
+                Yes
+              {% endif %}
             </td>
-            <td>2</td>
-            <td>$19.99</td>
-            <td>$39.98</td>
           </tr>
           <tr>
-            <td>
-              <img src="product2.jpg" alt="Product 2">
-              <h3>Product 2</h3>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </td>
-            <td>1</td>
-            <td>$29.99</td>
-            <td>$29.99</td>
-          </tr>
-          <tr>
-            <td colspan="3">Total:</td>
-            <td>$69.97</td>
-          </tr>
         </tbody>
+        {% endfor %}
+            
       </table>
     </section>
-    <section class="order-details">
-      <h2>Order Details</h2>
-      <p>Order ID: #1234</p>
-      <p>Order Date: 2023-02-20</p>
-      <p>Shipping Address:</p>
-      <address>
-        123 Main St<br>
-        Anytown, USA 12345
-      </address>
-    </section>
+    
   </main>
  </div>
     {% include 'footer.html' %}

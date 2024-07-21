@@ -29,6 +29,9 @@ urlpatterns = [
     path('profile_update/', views.update_profile, name='update_profile'),
     path('netbanking/', views.netbanking, name='netbanking'),
     path('remove_cart/<int:product_id>/', views.remove_cart_item, name='remove_cart'),
+    path('admin_update/', views.admin_update, name='admin_update'),
+    path('customer_view/', views.customer_view, name='customer_view'),
+    path('order_view/<int:order_id>/ <int:item_id>/', views.order_view, name='order_view'),
     
 
 ]

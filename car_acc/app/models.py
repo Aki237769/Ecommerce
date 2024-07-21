@@ -48,16 +48,25 @@ class Cart(models.Model):
         return f"product : {self.product.product_name}, quantity : {self.quantity}"
 
 
+
+
 class Order(models.Model):
     customer=models.ForeignKey(Customer_data, on_delete=models.CASCADE)
-    product=models.ForeignKey(Product_data, on_delete=models.CASCADE)
-    quantity=models.PositiveIntegerField(default=1)
-    total_price=models.FloatField(null=True)
+    total_amount=models.DecimalField(max_digits=10,decimal_places=2,null=True)
     order_date=models.DateTimeField(auto_now_add=True)
+    address = models.TextField(null=True)
 
-    def __str__(self) -> str:
+    def _str_(self) -> str:
         return f"order_by: {self.customer.customer_name}, product : {self.product.product_name}"
     
+
+class Order_Item(models.Model):
+    customer = models.ForeignKey(Customer_data, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,related_name='items',on_delete=models.CASCADE)
+    product = models.ForeignKey(Product_data,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    is_delivered = models.BooleanField(default=False)
 
     
 

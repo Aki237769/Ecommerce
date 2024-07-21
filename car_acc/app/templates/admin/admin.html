@@ -29,46 +29,31 @@
     <main>
         <section class="profile">
 
-            <h2>My Profile</h2>
+            <center><h2 style="color:whitesmoke; background-color: blueviolet;">My Profile</h2></center>
             <p>Welcome, {{ admin_data.admin_name}}!</p>
             <ul>
                 <li><strong>Email:</strong>{{admin_data.admin_email}}</li>
                 <li><strong>Role:</strong> {{admin_data.admin_role}}</li>
-                <li><strong>Last Login:</strong> [last login date]</li>
+                <li><strong>Contact No:</strong>{{admin_data.admin_phone}}</li>
             </ul>
-            <button class="btn-edit">Edit Profile</button>
+            <center><button type="button" class="btn btn-warning btn-lg" ><a href="{% url 'admin_update' %}" style="text-decoration:none;">Edit Profile</a></button></center>
         </section>
 
         <section class="products">
-            <h2>My Products</h2>
+            <center><h2 style="color:whitesmoke; background-color: blueviolet;">My Products</h2></center>
             <ul>
                 <li>Product 1</li>
                 <li>Product 2</li>
                 <li>Product 3</li>
                 <!-- add more products here -->
             </ul>
-            <a class="btn-add" href="{% url 'add_product' %}">Add New Product</a>
+            <center><button type="button" class="btn btn-warning btn-lg"><a class="btn-add" style="color: blue; text-decoration: none; margin-top: 40%;" href="{% url 'add_product' %}">Add New Product</a></button></center>
         </section>
         <section class="customers">
-            <h2>Customer Details</h2>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Order History</th>
-                </tr>
-                <tr>
-                    <td>John Doe</td>
-                    <td>johndoe@example.com</td>
-                    <td>View Orders</td>
-                </tr>
-                <tr>
-                    <td>Jane Smith</td>
-                    <td>janesmith@example.com</td>
-                    <td>View Orders</td>
-                </tr>
-                <!-- add more customers here -->
-            </table>
+            <center><h2 style="color: whitesmoke; background-color: blueviolet;">Customer Order</h2></center>
+           <center> <button type="button" class="btn btn-warning btn-lg" style="margin-top: 3%;"><a href="{% url 'customer_view' %}" style="text-decoration: none;">View Order</a></button></center>
+ 
+
         </section>
         <section class="status">
             <h2>Status/Update</h2>

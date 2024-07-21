@@ -51,6 +51,107 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
+def admin_update(request):
+
+    if not(request.session.get('admin_id')):
+        return redirect('login')
+    if request.method=="POST":
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        phone=request.POST.get('phone')
+        if all([name,email,phone]):
+            try:
+                admin=models.Admin_data.objects.get(admin_id=request.session.get('admin_id'))
+                admin.admin_name=name
+                admin.admin_email=email
+                admin.admin_phone=phone
+                admin.save()
+                data={
+                    "admin_data":admin,
+                    "success":"done"
+                }
+                return render(request, "admin/admin_update.html",context=data)
+            except IntegrityError as e:
+                if'admin_phone'in str(e):
+                    error={
+                        'error':'phone-error'
+                    }
+                else:
+                    error={
+                        'error':'email-error'
+                    }
+        else:
+            error={
+                'error':'empty-fields'
+            }
+        return render(request, "admin/admin_update.html", context=error)
+               
+    admin_data=models.Admin_data.objects.get(admin_id=request.session.get('admin_id'))
+    data={
+        'admin_data':admin_data
+    }
+    return render(request,"admin/admin_update.html", context=data)
+
+
+def order_view(request,order_id,item_id):
+    if not(request.session.get('admin_id')):
+         return redirect('login')
+    if request.method=="POST":
+        order=get_object_or_404(models.Order,id=order_id)
+        item = models.Order_Item.objects.get(id=item_id)
+        answer = request.POST.get('status')
+        print(answer)
+        if answer:
+            if answer == "Yes":
+                item.is_delivered = True
+                item.save()
+            else :
+                item.is_delivered = False
+                item.save()
+        
+    order=get_object_or_404(models.Order,id=order_id)
+    item=models.Order_Item.objects.filter(order_id=order.id)
+
+    data={
+        'orders':order,
+        'products':item
+    }
+    
+    return render(request, "admin/order_view.html",context=data)
+# def del_status(request,item_id):
+#     if not (request.session.get('admin_id')):
+#         return redirect('login')
+#     if request.method=="POST":
+
+#         order=get_object_or_404(models.Order,id=order_id)
+#         product=models.Order_Item.objects.filter(order_id=order.id)
+
+#     data={
+#         'orders':order,
+#         'products':item
+#     }
+#         item = models.Order_Item.objects.filter(id=item_id)
+#         answer = request.session.get('status')
+#         if answer:
+#             if answer == "Yes":
+#                 item.is_delivered = True
+#                 item.save()
+#                 return render(request, "admin/order_view.html",context=data)
+#             else :
+#                 item.is_delivered = False
+#                 item.save()
+#                 return render(request, "admin/order_view.html",context=data)
+        
+
+def customer_view(request):
+    if not(request.session.get('admin_id')):
+        return redirect('login')
+    customer_order=models.Order.objects.all()
+    data={
+        'orders':customer_order
+    }
+    return render(request, "admin/customer_order.html",context=data)
+
 
 
 
@@ -189,7 +290,7 @@ def handle_product_action(request, product_id):
                     cart_item.quantity=5
             cart_item.save()  # Clear existing cart items
             request.session['single_product'] = True
-            request.session['single_product_id'] = product_id
+            request.session['single_product_id'] = product.product_id
             return redirect('address')  # Redirect to the checkout page
 
     return redirect('cart')  # Redirect to the homepage or any other appropriate page
@@ -285,38 +386,65 @@ def checkout(request):
     else:
         cart_items = models.Cart.objects.filter(customer=request.session.get('customer_id'))
     if request.method=="POST":
-        total_price = round(sum(cart_items.product.product_price * cart_items.quantity for item in product)) 
+        total_price = round(sum(item.product.product_price * item.quantity for item in cart_items)) 
         payment_method=request.POST.get("payment")
-        print(payment_method)
         if payment_method=="netbanking":
             return render(request, 'customer/netbanking.html')
         
         elif payment_method=="cod" :
             customer = models.Customer_data.objects.get(customer_id=request.session['customer_id'])
-            product = get_object_or_404 (models.Product_data, product_id=product_id)
-            quantity = int(request.POST.get('quantity', 1))
-            models.Order.objects.filter(customer=customer).delete()  # Clear existing cart items
-            models.Order.objects.create(customer=customer, product=product, quantity=quantity)
+            order = models.Order.objects.create(customer=customer, total_amount = total_price, address = customer.customer_address)
+            for item in cart_items:
+                models.Order_Item.objects.create(customer=customer, order = order, product = item.product, quantity = item.quantity, price = item.product.product_price)
+            if single_product and product_id:
+                cart_items.delete()
+            else:
+                models.Cart.objects.filter(customer = customer).delete()
 
-            return render(request, 'customer/orderconfirmation.html')
+        request.session['single_product'] = False
+        request.session['single_product_id'] = None
+        order = get_object_or_404(models.Order, id = order.id)
+        items = models.Order_Item.objects.filter(order_id=order.id)
+        data = {
+            'order' : order,
+            'products' : items
+        }
+        return render(request, 'customer/orderconfirmation.html', context=data)
 
     return render(request,'customer/checkout.html')
 
 def orderconfirmation(request):
     if not (request.session.get('customer_id')):
         return redirect('login')
-    product = models.Order.objects.get(id = request.session.get('id'))
-    data = {
-        'product_data' : product
+    order=get_object_or_404(models.Order,id=order.id)
+    data={
+        "order":order
     }
     return render(request, 'customer/orderconfirmation.html',context=data)
 
 
 def orderhistory(request):
+    if not(request.session.get("customer_id")):
+            return redirect("login")  
+        
+    order = models.Order.objects.filter(customer_id = request.session.get('customer_id'))
+    items = models.Order_Item.objects.filter(customer_id = request.session.get('customer_id'))
+
+    for item in items:
+        item.total_price = item.quantity * item.price
     
-    return render(request, "customer/orderhistory.html")
+    data = {
+            'order' : order,
+            'products' : items
+    }
+    return render(request, "customer/orderhistory.html",context=data)                           
+
+
 
 def netbanking(request):
+    if not(request.session.get("customer_id")):
+            return redirect("login")  
+
 
     return render(request, "customer/netbanking.html")
 
